@@ -1,33 +1,31 @@
 import React from 'react';
 
-class MyButton extends React.Component {
+class MyInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isHover: false,
+      search: '',
     };
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.update = this.update.bind(this);
   }
-  handleMouseUp () {
-    this.setState({ isHover: true });
+
+  update(event) {
+    this.setState({ search: event.target.value.substr(0, 10) });
   }
-  handleMouseLeave () {
-    this.setState({ isHover: false });
-  }
+
   render() {
-    const { children, color } = this.props;
-    const background = this.state.isHover ? 'yellow' : 'black';
-    const text = this.state.isHover ? children : 'empty button';
     return (
-      <button
-        onMouseOver={this.handleMouseUp}
-        onFocus={this.handleMouseUp}
-        onMouseLeave={this.handleMouseLeave}
-        style={{ color, background, width: 200 }}
-      >{text}
-      </button>);
+      <div>
+        <input
+          type="text"
+          style={{ display: 'block', margin: 5 }}
+          value={this.state.search}
+          placeholder="Max 10 symbols"
+          onChange={this.update}
+        />
+        <div>{this.state.search}</div>
+      </div>);
   }
 }
 
-export default MyButton;
+export default MyInput;

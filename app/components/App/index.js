@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../../assets/images/react_logo_512x512.png';
-import MyButton from '../button/index';
-import Hello from '../ContainerHeroes/index';
+import MyInput from '../button/index';
+import ContainerHeroes from '../ContainerHeroes/index';
 
 const App = () => {
   return (
@@ -15,8 +15,8 @@ const App = () => {
         src={img}
         alt="React Logo"
       />
-      <MyButton color="red">Button</MyButton>
-      <Hello color="green" />
+      <MyInput />
+      <ContainerHeroes color="green" />
     </div>
   );
 };

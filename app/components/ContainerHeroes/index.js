@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import axios from 'axios';
 import ListOfHeroes from '../ListOfHeroes/index';
 
-class Hello extends React.Component {
+class ContainerHeroes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,11 +48,12 @@ class Hello extends React.Component {
       <div style={{ overflow: 'hidden', height: 300 }}>
         <a href="/#" onClick={this.press} className={this.state.class} style={linkStyle}>{text}</a>
         {list}
+        <p>Hidden zone</p>
       </div>
     );
   }
 }
 
-Hello.defaultProps = { color: 'red' };
+ContainerHeroes.defaultProps = { color: 'red' };
 
-export default Hello;
+export default ContainerHeroes;
