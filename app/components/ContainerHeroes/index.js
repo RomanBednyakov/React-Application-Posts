@@ -32,6 +32,46 @@ class ContainerHeroes extends React.Component {
     const className = (this.state.class === 'link off') ? 'link on' : 'link off';
     this.setState({ class: className });
   }
+  // toogleList(name, flag) {
+  //   const lists = this.state.newList;
+  //   // let newListHero = [];
+  //   // console.log('##', flag, name);
+  //   // this.state.newList.push({ flag, name });
+  //   // newListHero = lists.map((item) => {
+  //   //   console.log('item', item);
+  //   //   return item
+  //   // });
+  //   if (lists.length > 0) {
+  //     lists.map((item) => {
+  //       if (item.name === name) {
+  //         console.log('1111', item);
+  //         // item.flag = flag;
+  //       } else {
+  //         console.log('##', 222);
+  //         // lists.push({ name, flag });
+  //       }
+  //       return item;
+  //     });
+  //     // lists.map((item) => {
+  //     //   if (item.name === name) {
+  //     //     console.log('itemitemitem', item);
+  //     //     return item.flag = flag;
+  //     //   } else {
+  //     //     return lists.push({ name, flag });
+  //     //   }
+  //     // });
+  //     // newListHero = lists.map((item) => {
+  //     //   console.log('item', item);
+  //     //   item.name === name ? item.flag = flag : ''
+  //     // });
+  //   } else {
+  //     lists.push({ name, flag });
+  //   }
+  //   console.log('3333', lists);
+  // }
+  // list() {
+  //   console.log('##', this.state.newList);
+  // }
 
   render() {
     const { color } = this.props;

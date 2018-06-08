@@ -3,6 +3,14 @@ $h2color: #740e0e;
 
 body {
   color: $color;
+  .modal {
+    width: 100%;
+    height: 100%;
+    background: blue;
+  }
+  #portal {
+    text-align: center;
+  }
 }
 
 h2 {
