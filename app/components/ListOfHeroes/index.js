@@ -14,7 +14,6 @@ class ListOfHeroes extends React.Component {
     this.stateHeroes = this.stateHeroes.bind(this);
   }
 
-
   componentWillReceiveProps(nextProps) {
     const { heroes } = nextProps;
     for (let i = 0; i < heroes.length; i += 1) {
