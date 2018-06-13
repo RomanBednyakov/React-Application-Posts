@@ -30,13 +30,13 @@ class App extends React.Component {
           alt="React Logo"
         />
         <MyInput />
-        <button onClick={this.toogleModal}>Open modal</button>
         {this.state.isModalOpen &&
         <Modal onClick={this.toogleModal} className="modalCon">
           <h1>Modal</h1>
         </Modal>
         }
         <ContainerHeroes color="green" />
+        <button onClick={this.toogleModal}>Open modal</button>
       </div>
     );
   }
