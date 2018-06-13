@@ -8,44 +8,36 @@ class ListOfHeroes extends React.Component {
     super(props);
     this.state = {
       arrHeroes: [],
-      renderState: '',
+      renderHeroes: {},
     };
     this.changeStateOpen = this.changeStateOpen.bind(this);
     this.stateHeroes = this.stateHeroes.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { heroes } = nextProps;
-    for (let i = 0; i < heroes.length; i += 1) {
-      heroes[i].isOpen = false;
+    if (nextProps.heroes !== this.state.arrHeroes) {
+      const { heroes } = nextProps;
+      const renderHeroes = {};
+      heroes.forEach((i) => {
+        renderHeroes[i.name] = false;
+      });
+      this.setState({ renderHeroes, arrHeroes: heroes });
     }
-    this.setState({ arrHeroes: heroes });
   }
 
   changeStateOpen(flag, name) {
-    for (let i = 0; i < this.state.arrHeroes.length; i += 1) {
-      if (this.state.arrHeroes[i].name === name) {
-        this.state.arrHeroes[i].isOpen = flag;
-      }
-    }
+    const newFlagHeroes = Object.assign({}, this.state.renderHeroes);
+    newFlagHeroes[name] = flag;
+    this.setState({ renderHeroes: newFlagHeroes });
   }
 
   stateHeroes() {
-    const array = this.state.arrHeroes.map((item) => {
-      return (
-        <div key={item.name}>
-          {item.name}
-          <span style={{ marginLeft: 40 }}>
-            {`${item.isOpen}`}
-          </span>
-        </div>);
-    });
-    this.setState({ renderState: array });
+    console.log('stateHeroes', this.state.renderHeroes);
   }
 
   renderHeroes() {
-    const { heroes } = this.props;
-    return heroes.map((hero) => {
+    const { arrHeroes } = this.state;
+    return arrHeroes.map((hero) => {
       return (
         <ItemHero
           changeOpen={this.changeStateOpen}
@@ -63,7 +55,7 @@ class ListOfHeroes extends React.Component {
     return (
       <div>
         <button onClick={this.stateHeroes}>Show state</button>
-        <div>{this.state.renderState}{render}</div>
+        <div>{render}</div>
       </div>
     );
   }
