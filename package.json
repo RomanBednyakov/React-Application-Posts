@@ -10,7 +10,7 @@
     "lint": "eslint ./app/**/**.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage"
   },
   "author": "Kliment Petrov <kleopetroff@gmail.com>",
   "license": "MIT",
