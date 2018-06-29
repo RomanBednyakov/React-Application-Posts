@@ -1,8 +1,15 @@
 import React from 'react';
-import img from '../../assets/images/react_logo_512x512.png';
-import MyInput from '../button/index';
-import ContainerHeroes from '../ContainerHeroes/index';
-import Modal from '../modal/modal';
+import { connect } from 'react-redux';
+import { Route, Redirect, Link } from 'react-router-dom';
+import config from '../../config/index';
+import Modal from '../Modal/modal';
+import MyPosts from '../MyPosts/index';
+import FriendsPosts from '../FriendsPosts/index';
+import SearchFriends from '../SearchFriends/index';
+
+const mapStateToProps = ({ reducer }) => ({
+  reducer,
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -18,28 +25,56 @@ class App extends React.Component {
   }
 
   render() {
+    if (config.token === null && config.token === undefined) {
+      return (<Redirect
+        to={{ pathname: '/login' }}
+      />);
+    }
     return (
-      <div>
-        <h2 id="heading">Hello ReactJS</h2>
-        <img
-          className="image"
-          style={{ margin: '0.5em' }}
-          height="40"
-          width="40"
-          src={img}
-          alt="React Logo"
-        />
-        <MyInput />
+      <div className="app">
         {this.state.isModalOpen &&
-        <Modal onClick={this.toogleModal} className="modalCon">
-          <h1>Modal</h1>
-        </Modal>
+        <Modal onClick={this.toogleModal} className="modalCon" />
         }
-        <ContainerHeroes color="green" />
-        <button onClick={this.toogleModal}>Open modal</button>
+        <h1 className="h1">My-Application</h1>
+        <div className="containerBlock">
+          <div className="blockLeft">
+            <SearchFriends />
+            <button
+              className="btn"
+            >
+              <Link
+                className="linkButton"
+                href="../MyPosts/index.js"
+                to="/home/myposts"
+              >
+                My post
+              </Link>
+            </button>
+            <button className="btn">
+              <Link
+                className="linkButton"
+                href="../FriendsPosts/index.js"
+                to="/home/friendsposts"
+              >
+                Post friends
+              </Link>
+            </button>
+            <button
+              className="btn"
+              onClick={this.toogleModal}
+            >
+              Add new post
+            </button>
+          </div>
+          <div className="blockRight">
+            <Route path="/home/myposts" component={MyPosts} />
+            <Route path="/home/friendsposts" component={FriendsPosts} />
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
+

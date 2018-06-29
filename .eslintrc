@@ -22,6 +22,8 @@
     "global-require": "off",
     "semi": "warn",
     "arrow-body-style": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-underscore-dangle": 0,
+    "no-plusplus": "off"
   }
 }

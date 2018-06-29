@@ -3,26 +3,118 @@ $h2color: #740e0e;
 
 body {
   color: $color;
-  .modal {
-    width: 100%;
-    height: 100%;
-    background: blue;
-  }
   #portal {
     text-align: center;
   }
-}
+  .modal {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: blue;
+    flex-direction: column;
+    .content {
+      flex-direction: column;
+      display: flex;
+      width: 60%;
+    }
+  }
+  .addPost {
+    color: red;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+  }
+  h2 {
+    color: $h2color;
+  }
 
-h2 {
-  color: $h2color;
+  .link {
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    text-align: center;
+    height: auto;
+    font-size: 30px;
+    text-decoration: none;
+  }
+  .app {
+    .h1 {
+      color: red;
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .containerBlock {
+      display: flex;
+    }
+    .blockRight {
+      width: 70%;
+    }
+    .blockLeft {
+      width: 30%;
+      .btn {
+        display: block;
+        margin: 5px;
+        width: 100px;
+        padding: 0;
+      }
+    }
+    .linkButton {
+      height: 100%;
+      display: block;
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .post {
+    .date {
+      position: absolute;
+      top: 0;
+      right: 20px;
+    }
+    .header {
+      display: block;
+      position: relative;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .li {
+      padding: 0;
+      margin: 10px;
+      list-style-type: none;
+      background: blue;
+    }
+    .h3 {
+      margin: 0;
+      text-align: center;
+    }
+  }
 }
-
-.link {
-  display: block;
-  margin: 0 auto;
-  width: 400px;
-  text-align: center;
-  height: auto;
-  font-size: 30px;
-  text-decoration: none;
+.search {
+  position: relative;
+  width: 200px;
+  .li {
+    list-style-type: none;
+    display: flex;
+    margin: 5px;
+  }
+  .content {
+    background: blue;
+    position: absolute;
+    width: 200px;
+    max-height: 500px;
+  }
+  input {
+    width: 200px;
+  }
+  span {
+    margin-right: auto;
+  }
 }

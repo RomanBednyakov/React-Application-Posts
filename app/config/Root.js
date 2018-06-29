@@ -1,16 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import App from '../components/App/index';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Provider } from 'react-redux';
+import App from '../components/App';
+import Login from '../components/Login';
+import Registration from '../components/Registration';
+import store from './store';
 
-const Root = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" component={App} exact />
-      </Switch>
-    </Router>
-  );
-};
+const history = createBrowserHistory();
 
+class Root extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router history={history}>
+          <Switch>
+            <Route path="/home" component={App} />
+            <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
+            <Redirect to="/home" exact />
+          </Switch>
+        </Router>
+      </Provider>
+    );
+  }
+}
 export default Root;
 
