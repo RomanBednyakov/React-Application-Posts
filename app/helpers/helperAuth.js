@@ -1,4 +1,4 @@
-import config from '../config/index';
+// import config from '../config/index';
 
 class Help {
   checkStatus = (response) => {
@@ -12,7 +12,7 @@ class Help {
 
   saveToken = (response) => {
     localStorage.setItem('token', JSON.stringify(response.data.token));
-    config.token = response.data.token;
+    // config.token = response.data.token;
     return response;
   }
 }

@@ -9,7 +9,7 @@ import store from './store';
 
 const history = createBrowserHistory();
 
-class Root extends React.Component {
+export default class Root extends React.Component {
   render() {
     return (
       <Provider store={store}>
@@ -25,5 +25,4 @@ class Root extends React.Component {
     );
   }
 }
-export default Root;
 

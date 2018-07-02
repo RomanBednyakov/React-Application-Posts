@@ -16,13 +16,6 @@ export const redirectLogin = (data) => {
   };
 };
 
-export const redirectRegistration = (data) => {
-  return {
-    type: 'REDIRECT_REGISTRATION',
-    data,
-  };
-};
-
 export const MyPosts = (data) => {
   return {
     type: 'MY_POSTS',
@@ -33,6 +26,13 @@ export const MyPosts = (data) => {
 export const FriendsPosts = (data) => {
   return {
     type: 'FRIENDS_POSTS',
+    data,
+  };
+};
+
+export const clearFriends = (data) => {
+  return {
+    type: 'FRIENDS_CLEAR',
     data,
   };
 };
@@ -59,7 +59,6 @@ export const errorMessage = (data) => {
 };
 
 export function registration(login, password, email, avatar) {
-  console.log('login, password, email, avatar', login, password, email, avatar);
   const data = {
     name: login,
     password,
@@ -67,7 +66,7 @@ export function registration(login, password, email, avatar) {
     avatar,
   };
   localStorage.removeItem('token');
-  config.token = null;
+  // config.token = null;
   return (dispatch) => {
     return apiRequest.post(`${config.hrefUrl}/auth`, data)
       .then(help.checkStatus)
@@ -87,7 +86,7 @@ export function logining(login, password) {
   url.search = new URLSearchParams(userData);
   return (dispatch) => {
     localStorage.removeItem('token');
-    config.token = null;
+    // config.token = null;
     return apiRequest.get(url)
       .then(help.checkStatus)
       .then(help.saveToken)
@@ -129,5 +128,32 @@ export function getFriends(value) {
         dispatch(Friends(response.data));
       })
       .catch(() => dispatch(errorMessage(true)));
+  };
+}
+
+export function addFriend(followingId) {
+  const data = {
+    followingId,
+  };
+  return () => {
+    return apiRequest.post(`${config.hrefUrl}/followers`, data)
+      .then(help.checkStatus)
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+}
+
+export function removeFriends(followingId) {
+  const data = {
+    followingId,
+  };
+  console.log('##', data);
+  return () => {
+    return apiRequest.delete(`${config.hrefUrl}/followers`, data)
+      .then(help.checkStatus)
+      .catch((error) => {
+        console.log('error', error);
+      });
   };
 }

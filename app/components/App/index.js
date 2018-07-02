@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Link } from 'react-router-dom';
-import config from '../../config/index';
+// import config from '../../config/index';
 import Modal from '../Modal/modal';
 import MyPosts from '../MyPosts/index';
 import FriendsPosts from '../FriendsPosts/index';
@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (config.token === null && config.token === undefined) {
+    if (localStorage.getItem('token') === null || localStorage.getItem('token') === undefined) {
       return (<Redirect
         to={{ pathname: '/login' }}
       />);
@@ -36,9 +36,9 @@ class App extends React.Component {
         <Modal onClick={this.toogleModal} className="modalCon" />
         }
         <h1 className="h1">My-Application</h1>
+        <SearchFriends />
         <div className="containerBlock">
           <div className="blockLeft">
-            <SearchFriends />
             <button
               className="btn"
             >

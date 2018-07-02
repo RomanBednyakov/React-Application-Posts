@@ -1,10 +1,10 @@
 import axios from 'axios';
-import configs from '../config/index';
+// import configs from '../config/index';
 
 axios.interceptors.request.use((config) => {
   const newConfig = config;
-  if (configs.token != null) {
-    newConfig.headers.Authorization = configs.token;
+  if (localStorage.getItem('token') != null) {
+    newConfig.headers.Authorization = localStorage.getItem('token');
   }
 
   return newConfig;
@@ -21,6 +21,16 @@ ApiRequest.prototype = {
   post: (url, data) => {
     return axios({
       method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      url,
+      data: JSON.stringify(data),
+    });
+  },
+  delete: (url, data) => {
+    return axios({
+      method: 'delete',
       headers: {
         'Content-Type': 'application/json',
       },

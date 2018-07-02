@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { registration, redirectRegistration } from '../../redux/action/index';
+import { registration } from '../../redux/action/index';
 
 const mapStateToProps = ({ reducer }) => ({
   reducer,
@@ -9,7 +9,6 @@ const mapStateToProps = ({ reducer }) => ({
 const mapDispatchToProps = dispatch => ({
   registration: (login, password, email, avatar) =>
     dispatch(registration(login, password, email, avatar)),
-  redirectRegistration: () => dispatch(redirectRegistration(false)),
 });
 
 class Login extends React.Component {
@@ -20,6 +19,7 @@ class Login extends React.Component {
       password: '',
       email: '',
       avatar: '',
+      redirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -54,7 +54,10 @@ class Login extends React.Component {
   }
   render() {
     if (this.props.reducer.redirectLogin) {
-      this.props.redirectRegistration();
+      this.setState({ redirect: true });
+    }
+    if (this.state.redirect) {
+      this.setState({ redirect: false });
       return <Redirect to="/login" />;
     }
     return (

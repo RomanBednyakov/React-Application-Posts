@@ -44,15 +44,15 @@ const reducer = (state = initial, action) => {
         ...state,
         friendsPosts: data,
       };
-    case 'REDIRECT_REGISTRATION':
-      return {
-        ...state,
-        redirectLogin: data,
-      };
     case 'FRIENDS':
       return {
         ...state,
         friends: data,
+      };
+    case 'FRIENDS_CLEAR':
+      return {
+        ...state,
+        friends: [],
       };
     default:
       return state;
